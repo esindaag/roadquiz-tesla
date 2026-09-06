@@ -1,0 +1,7 @@
+{
+  "name":"roadquiz-tesla-mvp",
+  "version":"1.0.0",
+  "private":true,
+  "description":"Tesla passenger quiz MVP - no external npm dependencies",
+  "scripts":{"start":"node server.js"}
+}
