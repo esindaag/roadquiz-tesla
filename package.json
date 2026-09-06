@@ -3,5 +3,5 @@
   "version":"1.0.0",
   "private":true,
   "description":"Tesla passenger quiz MVP - no external npm dependencies",
-  "scripts":{"start":"node bootstrap.js"}
+  "scripts":{"start":"node bootstrap-safe.js"}
 }
