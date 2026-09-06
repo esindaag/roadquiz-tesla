@@ -1,0 +1,10 @@
+const fs=require('fs'),path=require('path'),Module=require('module');
+let code=fs.readFileSync(path.join(__dirname,'bootstrap.js'),'utf8');
+const from="let pool=questionBank[level].filter(q=>q.cat===cat);";
+const to="let pool=questionBank[level].filter(q=>q.cat===cat);if(!pool.length)pool=questionBank.flat().filter(q=>q.cat===cat);";
+if(!code.includes(from))throw new Error('Safe question picker patch target not found');
+code=code.replace(from,to);
+const runtime=new Module(path.join(__dirname,'bootstrap-runtime.js'),module);
+runtime.filename=path.join(__dirname,'bootstrap-runtime.js');
+runtime.paths=module.paths;
+runtime._compile(code,runtime.filename);
