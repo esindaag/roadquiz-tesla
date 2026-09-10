@@ -1,11 +1,19 @@
-const RQ_CHAR_NAMES=['VOLT','BİP','ZİP','NOVA','DRİFT','JELLY','SPROUT','ORBIT','CHAME','CHILL'];
-if(window.RQ_CHAR_SHEET)document.documentElement.style.setProperty('--rq-char-sheet',`url("${window.RQ_CHAR_SHEET}")`);
+const RQ_CHAR_NAMES=['VOLT','NOVA','CHAME','DRIFT','SPROUT','JELLY','ORBIT','ZIP','BIP','CHILL'];
+const RQ_CHAR_FILES=['volt','nova','chame','drift','sprout','jelly','orbit','zip','bip','chill'];
 function rqCharIndex(p){const d=pdata(p.name);return Math.max(0,CHARACTERS.findIndex(c=>c.id===d.char.id))}
-function characterArt(i,cls=''){return `<span class="rq-char-img rq-char-${i} ${cls}" aria-hidden="true"></span>`}
+function characterArt(i,cls=''){const safe=Math.max(0,Math.min(RQ_CHAR_FILES.length-1,Number(i)||0));return `<img class="rq-char-png ${cls}" src="/characters/${RQ_CHAR_FILES[safe]}.png" alt="${RQ_CHAR_NAMES[safe]}" loading="eager" decoding="async">`}
+
+const rqStyle=document.createElement('style');rqStyle.textContent=`
+.rq-char-png{display:block;max-width:100%;max-height:100%;object-fit:contain}
+.rq-chargrid .charpick{overflow:hidden}
+.rq-chargrid .charpick>.char-art{width:100%;height:92px;object-fit:contain}
+.avatar-stage{display:flex;align-items:center;justify-content:center;overflow:visible}
+.avatar-stage .avatar-art{width:100%;height:100%;object-fit:contain}
+`;document.head.appendChild(rqStyle);
 
 confetti=function(){if(document.querySelector('.confetti-radial'))return;const host=document.createElement('div');host.className='confetti-radial';for(let i=0;i<78;i++){const p=document.createElement('i'),a=Math.random()*Math.PI*2,d=150+Math.random()*390;p.dataset.c=i%6;p.style.setProperty('--dx',Math.cos(a)*d+'px');p.style.setProperty('--dy',Math.sin(a)*d*.68+'px');p.style.setProperty('--fall',(260+Math.random()*420)+'px');p.style.setProperty('--rot',(220+Math.random()*760)+'deg');p.style.setProperty('--delay',(Math.random()*.12)+'s');p.style.setProperty('--dur',(1.85+Math.random()*.45)+'s');host.appendChild(p)}document.body.appendChild(host);setTimeout(()=>host.remove(),2700)};
 
-avatar=function(p,cls=''){const d=pdata(p.name),idx=rqCharIndex(p);return `<div class="avatar avatar3d char-${idx} ${cls}" title="${RQ_CHAR_NAMES[idx]}"><div class="avatar-stage">${characterArt(idx,'avatar-art')}<div class="avatar-shadow"></div></div><div class="avatar-tag">${RQ_CHAR_NAMES[idx]}</div></div>`};
+avatar=function(p,cls=''){const idx=rqCharIndex(p);return `<div class="avatar avatar3d char-${idx} ${cls}" title="${RQ_CHAR_NAMES[idx]}"><div class="avatar-stage">${characterArt(idx,'avatar-art')}<div class="avatar-shadow"></div></div><div class="avatar-tag">${RQ_CHAR_NAMES[idx]}</div></div>`};
 
 joinScreen=function(){let selected='0';page(`<div class="phoneJoin"><div class="mobile-top"><div class="rqmark">RQ</div><div><div class="brand">ROADQUIZ</div><div class="statusline">ROOM ${esc(roomCode)}</div></div></div><div class="joinCard"><div class="eyebrow">PLAYER PROFILE</div><h1>Yolcu profilini oluştur</h1><input id="name" class="input" maxlength="13" placeholder="Adın" autocomplete="off"><div class="smallcaps charlabel">KARAKTERİNİ SEÇ</div><div class="chargrid rq-chargrid">${CHARACTERS.map((c,i)=>`<button type="button" class="charpick ${i===0?'selected':''}" data-id="${c.id}">${characterArt(i,'char-art')}<b>${RQ_CHAR_NAMES[i]}</b><small>ROADQUIZ CREW</small></button>`).join('')}</div><button type="button" id="join" class="btn primary full joinbtn">Araca Bağlan ⚡</button><p id="err" class="small error"></p></div></div>`,'phone');document.querySelectorAll('.charpick').forEach(b=>b.onclick=()=>{selected=b.dataset.id;document.querySelectorAll('.charpick').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});$('#join').onclick=async()=>{const btn=$('#join');try{btn.disabled=true;const n=$('#name').value.trim();if(!n)throw Error('Adını yazmalısın');const d=await api(`/api/rooms/${roomCode}/join`,{method:'POST',body:JSON.stringify({name:`${n}~${selected}`})});playerId=d.playerId;sessionStorage.playerId=playerId;sessionStorage.playerRoom=roomCode;playerLoop()}catch(e){btn.disabled=false;$('#err').textContent=e.message}}};
 
@@ -13,6 +21,5 @@ finishedHost=function(s){if(document.querySelector('.final-v3'))return;const w=s
 
 pFinished=function(s){if(document.querySelector('.phone-finish'))return;const d=pdata(s.me.name),rank=s.players.findIndex(p=>p.id===s.me.id)+1,isWinner=rank===1;page(`<div class="locked phone-finish ${isWinner?'phone-winner':'phone-loser'}">${avatar(s.me,'phone-avatar')}<div class="eyebrow">TRIP COMPLETE</div><h1>${isWinner?'Tebrikler!':'Yarışma bitti'}</h1><div class="phone-final-score"><strong>${s.me.score.toLocaleString('tr-TR')}</strong><span>PUAN</span></div><div class="phone-rank">#${rank}</div><p>${isWinner?'Yolun bilgi şampiyonu sensin.':'Podyum araç ekranında.'}</p></div>`,'phone')};
 
-// app.js ilk ekranı patch yüklenmeden çizebildiği için join ekranını burada tek kez doğru sürümle yeniden kur.
 if(parts[0]==='join'&&parts[1]){clearInterval(timer);if(playerId&&sessionStorage.playerRoom===roomCode)playerLoop();else{playerId=null;sessionStorage.removeItem('playerId');sessionStorage.removeItem('playerRoom');joinScreen()}}
 document.documentElement.classList.add('rq-ready');
