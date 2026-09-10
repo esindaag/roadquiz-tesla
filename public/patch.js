@@ -1,7 +1,7 @@
 const RQ_CHAR_NAMES=['VOLT','NOVA','CHAME','DRIFT','SPROUT','JELLY','ORBIT','ZIP','BIP','CHILL'];
 const RQ_CHAR_FILES=['volt','nova','chame','drift','sprout','jelly','orbit','zip','bip','chill'];
 function rqCharIndex(p){const d=pdata(p.name);return Math.max(0,CHARACTERS.findIndex(c=>c.id===d.char.id))}
-function characterArt(i,cls=''){const safe=Math.max(0,Math.min(RQ_CHAR_FILES.length-1,Number(i)||0));return `<img class="rq-char-png ${cls}" src="/characters/${RQ_CHAR_FILES[safe]}.png" alt="${RQ_CHAR_NAMES[safe]}" loading="eager" decoding="async">`}
+function characterArt(i,cls=''){const safe=Math.max(0,Math.min(RQ_CHAR_FILES.length-1,Number(i)||0));return `<img class="rq-char-png ${cls}" src="/characters/${RQ_CHAR_FILES[safe]}.webp" alt="${RQ_CHAR_NAMES[safe]}" loading="eager" decoding="async">`}
 
 const rqStyle=document.createElement('style');rqStyle.textContent=`
 .rq-char-png{display:block;max-width:100%;max-height:100%;object-fit:contain}
