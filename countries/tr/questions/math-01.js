@@ -1,0 +1,22 @@
+module.exports=[
+{level:1,q:'17 + 28 kaçtır?',correct:'45',wrong:['44','46','55']},
+{level:1,q:'9 × 7 kaçtır?',correct:'63',wrong:['56','72','67']},
+{level:1,q:'100 sayısının %25’i kaçtır?',correct:'25',wrong:['20','30','40']},
+{level:1,q:'144 sayısının karekökü kaçtır?',correct:'12',wrong:['10','14','16']},
+{level:1,q:'Bir üçgenin iç açılar toplamı kaç derecedir?',correct:'180',wrong:['90','270','360']},
+{level:2,q:'3/4 kesrinin ondalık gösterimi hangisidir?',correct:'0,75',wrong:['0,25','0,5','0,8']},
+{level:2,q:'2 üzeri 5 kaçtır?',correct:'32',wrong:['16','25','64']},
+{level:2,q:'Bir dikdörtgenin alanı nasıl hesaplanır?',correct:'Kısa kenar × uzun kenar',wrong:['2 × kısa kenar','Kenarların toplamı','Uzun kenarın karesi']},
+{level:2,q:'45 sayısının asal çarpanlarından biri hangisidir?',correct:'5',wrong:['2','7','11']},
+{level:2,q:'0,2 sayısı yüzde olarak kaçtır?',correct:'20%',wrong:['2%','10%','200%']},
+{level:3,q:'x + 7 = 19 denkleminde x kaçtır?',correct:'12',wrong:['10','11','13']},
+{level:3,q:'Bir çemberin çevresi hangi ifadeyle hesaplanır?',correct:'2πr',wrong:['πr²','r²','2r²']},
+{level:3,q:'5! değeri kaçtır?',correct:'120',wrong:['25','60','720']},
+{level:3,q:'Bir zar atıldığında 6 gelme olasılığı kaçtır?',correct:'1/6',wrong:['1/2','1/3','1/4']},
+{level:3,q:'Ardışık iki çift sayı arasındaki fark kaçtır?',correct:'2',wrong:['1','3','4']},
+{level:4,q:'3x = 27 denkleminde x kaçtır?',correct:'9',wrong:['6','8','12']},
+{level:4,q:'Hipotenüsü 5, bir dik kenarı 3 olan dik üçgende diğer dik kenar kaçtır?',correct:'4',wrong:['2','5','6']},
+{level:4,q:'1, 1, 2, 3, 5, 8 dizisinde sıradaki sayı hangisidir?',correct:'13',wrong:['10','11','12']},
+{level:4,q:'log10(1000) kaçtır?',correct:'3',wrong:['2','10','100']},
+{level:5,q:'Bir sayının %20’si 36 ise sayının kendisi kaçtır?',correct:'180',wrong:['144','160','200']}
+];
