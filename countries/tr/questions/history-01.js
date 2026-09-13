@@ -1,0 +1,22 @@
+module.exports=[
+{level:1,q:'Türkiye Cumhuriyeti hangi yıl ilan edildi?',correct:'1923',wrong:['1919','1920','1922']},
+{level:1,q:'TBMM hangi şehirde açıldı?',correct:'Ankara',wrong:['İstanbul','Sivas','Erzurum']},
+{level:1,q:'İstanbul’u fetheden Osmanlı padişahı kimdir?',correct:'Fatih Sultan Mehmet',wrong:['Yavuz Sultan Selim','Kanuni Sultan Süleyman','II. Mahmud']},
+{level:1,q:'Türkiye Cumhuriyeti’nin kurucusu kimdir?',correct:'Mustafa Kemal Atatürk',wrong:['İsmet İnönü','Kazım Karabekir','Fevzi Çakmak']},
+{level:1,q:'19 Mayıs 1919’da Mustafa Kemal hangi şehre çıktı?',correct:'Samsun',wrong:['Amasya','Sivas','Erzurum']},
+{level:2,q:'İstanbul’un fethi hangi yılda gerçekleşti?',correct:'1453',wrong:['1402','1517','1526']},
+{level:2,q:'Malazgirt Savaşı hangi yılda yapıldı?',correct:'1071',wrong:['1040','1176','1243']},
+{level:2,q:'Türkiye’nin ikinci cumhurbaşkanı kimdir?',correct:'İsmet İnönü',wrong:['Celal Bayar','Cemal Gürsel','Fevzi Çakmak']},
+{level:2,q:'Osmanlı Devleti’nin kurucusu kimdir?',correct:'Osman Gazi',wrong:['Orhan Gazi','Ertuğrul Gazi','I. Murad']},
+{level:2,q:'Saltanat hangi yıl kaldırıldı?',correct:'1922',wrong:['1920','1923','1924']},
+{level:3,q:'Halifelik hangi yıl kaldırıldı?',correct:'1924',wrong:['1921','1922','1926']},
+{level:3,q:'Lozan Barış Antlaşması hangi yıl imzalandı?',correct:'1923',wrong:['1919','1921','1925']},
+{level:3,q:'Ankara hangi yıl Türkiye’nin başkenti oldu?',correct:'1923',wrong:['1920','1922','1924']},
+{level:3,q:'Harf Devrimi hangi yıl yapıldı?',correct:'1928',wrong:['1925','1926','1930']},
+{level:3,q:'Büyük Taarruz hangi yıl başladı?',correct:'1922',wrong:['1919','1920','1921']},
+{level:4,q:'Amasya Genelgesi hangi yıl yayımlandı?',correct:'1919',wrong:['1918','1920','1921']},
+{level:4,q:'Sivas Kongresi hangi yıl toplandı?',correct:'1919',wrong:['1918','1920','1922']},
+{level:4,q:'Erzurum Kongresi hangi yıl toplandı?',correct:'1919',wrong:['1918','1920','1921']},
+{level:4,q:'Göbeklitepe hangi il sınırları içindedir?',correct:'Şanlıurfa',wrong:['Mardin','Gaziantep','Diyarbakır']},
+{level:4,q:'Troya Antik Kenti hangi ilimizdedir?',correct:'Çanakkale',wrong:['İzmir','Balıkesir','Manisa']}
+];
