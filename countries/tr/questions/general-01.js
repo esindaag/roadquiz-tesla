@@ -1,0 +1,22 @@
+module.exports=[
+{level:1,q:'Bir yılda kaç mevsim vardır?',correct:'4',wrong:['3','5','6']},
+{level:1,q:'Bir düzinede kaç adet vardır?',correct:'12',wrong:['10','20','24']},
+{level:1,q:'Pusulada N harfi hangi yönü gösterir?',correct:'Kuzey',wrong:['Güney','Doğu','Batı']},
+{level:1,q:'Mona Lisa tablosunun ressamı kimdir?',correct:'Leonardo da Vinci',wrong:['Michelangelo','Raphael','Vincent van Gogh']},
+{level:1,q:'Eyfel Kulesi hangi şehirdedir?',correct:'Paris',wrong:['Roma','Londra','Brüksel']},
+{level:2,q:'Japonya’nın para birimi hangisidir?',correct:'Yen',wrong:['Won','Yuan','Baht']},
+{level:2,q:'Bir haftada kaç saat vardır?',correct:'168',wrong:['144','160','180']},
+{level:2,q:'Braille alfabesi öncelikle hangi duyuya dayanır?',correct:'Dokunma',wrong:['Görme','İşitme','Koku']},
+{level:2,q:'Grammy ödülleri ağırlıklı olarak hangi alanla ilgilidir?',correct:'Müzik',wrong:['Sinema','Tiyatro','Mimarlık']},
+{level:2,q:'Oscar ödülleri ağırlıklı olarak hangi alanla ilgilidir?',correct:'Sinema',wrong:['Edebiyat','Mimarlık','Bilim']},
+{level:3,q:'Big Ben hangi şehirdedir?',correct:'Londra',wrong:['Dublin','Edinburgh','Manchester']},
+{level:3,q:'Sushi hangi ülkenin mutfağıyla özdeşleşmiştir?',correct:'Japonya',wrong:['Çin','Tayland','Güney Kore']},
+{level:3,q:'Hollywood hangi şehirle özdeşleşmiştir?',correct:'Los Angeles',wrong:['New York','Chicago','Miami']},
+{level:3,q:'Dünya üzerindeki en büyük kıta hangisidir?',correct:'Asya',wrong:['Afrika','Avrupa','Kuzey Amerika']},
+{level:3,q:'Olimpiyat halkaları kaç tanedir?',correct:'5',wrong:['4','6','7']},
+{level:4,q:'Bir satranç oyuncusu oyuna kaç taşla başlar?',correct:'16',wrong:['12','14','18']},
+{level:4,q:'Dünyada ana dil olarak en fazla konuşura sahip dil hangisidir?',correct:'Mandarin Çincesi',wrong:['İngilizce','İspanyolca','Arapça']},
+{level:4,q:'Türkiye’nin uluslararası telefon ülke kodu hangisidir?',correct:'+90',wrong:['+39','+49','+44']},
+{level:4,q:'Pizza ile en çok özdeşleşen ülke hangisidir?',correct:'İtalya',wrong:['İspanya','Portekiz','Yunanistan']},
+{level:5,q:'Uluslararası Morse alfabesinde SOS sinyali hangi dizilimle gösterilir?',correct:'... --- ...',wrong:['--- ... ---','... ... ---','-.- .- -']}
+];
