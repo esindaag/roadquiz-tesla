@@ -1,0 +1,22 @@
+module.exports=[
+{level:1,q:'Güneş Sistemi’nin en büyük gezegeni hangisidir?',correct:'Jüpiter',wrong:['Satürn','Dünya','Mars']},
+{level:1,q:'Suyun kimyasal formülü nedir?',correct:'H₂O',wrong:['CO₂','O₂','NaCl']},
+{level:1,q:'İnsan vücudundaki en büyük organ hangisidir?',correct:'Deri',wrong:['Karaciğer','Akciğer','Beyin']},
+{level:1,q:'Kızıl Gezegen olarak bilinen gezegen hangisidir?',correct:'Mars',wrong:['Venüs','Jüpiter','Merkür']},
+{level:1,q:'Dünya’nın doğal uydusu hangisidir?',correct:'Ay',wrong:['Titan','Europa','Ganymede']},
+{level:2,q:'Dünya atmosferinde en fazla bulunan gaz hangisidir?',correct:'Azot',wrong:['Oksijen','Argon','Karbondioksit']},
+{level:2,q:'İnsan kalbi kaç odacıklıdır?',correct:'4',wrong:['2','3','5']},
+{level:2,q:'Saf su deniz seviyesinde kaç °C’de donar?',correct:'0',wrong:['-10','10','100']},
+{level:2,q:'Fotosentez sırasında bitkilerin kullandığı temel gaz hangisidir?',correct:'Karbondioksit',wrong:['Oksijen','Azot','Helyum']},
+{level:2,q:'Elektrik akımının SI birimi nedir?',correct:'Amper',wrong:['Volt','Ohm','Watt']},
+{level:3,q:'Işık yılı neyin birimidir?',correct:'Uzaklık',wrong:['Zaman','Hız','Enerji']},
+{level:3,q:'Atom çekirdeğinde hangi parçacıklar bulunur?',correct:'Proton ve nötron',wrong:['Elektron ve proton','Sadece elektron','Foton ve elektron']},
+{level:3,q:'pH değeri 7 olan çözelti nasıl adlandırılır?',correct:'Nötr',wrong:['Asidik','Bazik','Radyoaktif']},
+{level:3,q:'Ozon tabakası en çok hangi ışınları soğurur?',correct:'Morötesi (UV)',wrong:['Kızılötesi','Radyo dalgaları','Mikrodalgalar']},
+{level:3,q:'Ribozomun temel görevi nedir?',correct:'Protein sentezi',wrong:['DNA eşlenmesi','Yağ sindirimi','Su depolama']},
+{level:4,q:'Mitokondri en çok hangi işle ilişkilidir?',correct:'Hücresel enerji üretimi',wrong:['Protein paketleme','DNA depolama','Hücre duvarı üretimi']},
+{level:4,q:'Görünür ışıkta en uzun dalga boyuna sahip renk hangisidir?',correct:'Kırmızı',wrong:['Mor','Mavi','Yeşil']},
+{level:4,q:'Arşimet prensibi hangi kuvvetle ilgilidir?',correct:'Kaldırma kuvveti',wrong:['Sürtünme kuvveti','Manyetik kuvvet','Merkezcil kuvvet']},
+{level:4,q:'Newton’un üçüncü hareket yasası hangi kavramla özetlenir?',correct:'Etki-tepki',wrong:['Eylemsizlik','Kütlenin korunumu','Basınç']},
+{level:5,q:'İnsanda kaç çift kromozom bulunur?',correct:'23',wrong:['22','24','46']}
+];
