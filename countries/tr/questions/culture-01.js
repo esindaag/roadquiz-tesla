@@ -1,0 +1,22 @@
+module.exports=[
+{level:1,q:'İstiklal Marşı’nın yazarı kimdir?',correct:'Mehmet Akif Ersoy',wrong:['Nazım Hikmet','Yahya Kemal Beyatlı','Tevfik Fikret']},
+{level:1,q:'“Kürk Mantolu Madonna” romanının yazarı kimdir?',correct:'Sabahattin Ali',wrong:['Orhan Pamuk','Yaşar Kemal','Ahmet Hamdi Tanpınar']},
+{level:1,q:'“İnce Memed” romanının yazarı kimdir?',correct:'Yaşar Kemal',wrong:['Kemal Tahir','Orhan Kemal','Tarık Buğra']},
+{level:1,q:'“G.O.R.A.” filminde Arif karakterini kim canlandırır?',correct:'Cem Yılmaz',wrong:['Ata Demirer','Şahan Gökbakar','Yılmaz Erdoğan']},
+{level:1,q:'“Kaplumbağa Terbiyecisi” tablosunun ressamı kimdir?',correct:'Osman Hamdi Bey',wrong:['İbrahim Çallı','Şeker Ahmet Paşa','Fikret Mualla']},
+{level:2,q:'“Tutunamayanlar” romanının yazarı kimdir?',correct:'Oğuz Atay',wrong:['Yusuf Atılgan','Adalet Ağaoğlu','Peyami Safa']},
+{level:2,q:'“Çalıkuşu” romanının yazarı kimdir?',correct:'Reşat Nuri Güntekin',wrong:['Halide Edib Adıvar','Peyami Safa','Refik Halit Karay']},
+{level:2,q:'“Hababam Sınıfı”nın yazarı kimdir?',correct:'Rıfat Ilgaz',wrong:['Aziz Nesin','Muzaffer İzgü','Haldun Taner']},
+{level:2,q:'Karagöz ve Hacivat hangi geleneksel sanatın kahramanlarıdır?',correct:'Gölge oyunu',wrong:['Orta oyunu','Meddahlık','Kukla tiyatrosu']},
+{level:2,q:'Mimar Sinan’ın “ustalık eserim” dediği yapı hangisidir?',correct:'Selimiye Camii',wrong:['Süleymaniye Camii','Şehzade Camii','Mihrimah Sultan Camii']},
+{level:3,q:'“Saatleri Ayarlama Enstitüsü”nün yazarı kimdir?',correct:'Ahmet Hamdi Tanpınar',wrong:['Reşat Nuri Güntekin','Halide Edib Adıvar','Yakup Kadri Karaosmanoğlu']},
+{level:3,q:'“Aylak Adam” romanının yazarı kimdir?',correct:'Yusuf Atılgan',wrong:['Oğuz Atay','Bilge Karasu','Vüs’at O. Bener']},
+{level:3,q:'“Eşkıya” filminin yönetmeni kimdir?',correct:'Yavuz Turgul',wrong:['Nuri Bilge Ceylan','Zeki Demirkubuz','Çağan Irmak']},
+{level:3,q:'“Bir Zamanlar Anadolu’da” filminin yönetmeni kimdir?',correct:'Nuri Bilge Ceylan',wrong:['Semih Kaplanoğlu','Yeşim Ustaoğlu','Reha Erdem']},
+{level:3,q:'Türk Beşleri arasında yer alan besteci kimdir?',correct:'Ahmet Adnan Saygun',wrong:['Zeki Müren','Münir Nurettin Selçuk','Ruhi Su']},
+{level:4,q:'“Hüsn ü Aşk”ın yazarı kimdir?',correct:'Şeyh Galip',wrong:['Nef’i','Nabi','Nedim']},
+{level:4,q:'“Mai ve Siyah” romanının yazarı kimdir?',correct:'Halit Ziya Uşaklıgil',wrong:['Mehmet Rauf','Yakup Kadri Karaosmanoğlu','Hüseyin Rahmi Gürpınar']},
+{level:4,q:'“Araba Sevdası”nın yazarı kimdir?',correct:'Recaizade Mahmut Ekrem',wrong:['Namık Kemal','Şemsettin Sami','Ahmet Mithat Efendi']},
+{level:4,q:'“Şair Evlenmesi”nin yazarı kimdir?',correct:'Şinasi',wrong:['Namık Kemal','Ziya Paşa','Ahmet Vefik Paşa']},
+{level:5,q:'“Mavi Sürgün” eserinin yazarı kimdir?',correct:'Halikarnas Balıkçısı',wrong:['Azra Erhat','Sabahattin Eyüboğlu','Bedri Rahmi Eyüboğlu']}
+];
