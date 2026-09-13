@@ -3,5 +3,5 @@
   "version":"1.0.0",
   "private":true,
   "description":"Tesla passenger quiz MVP - no external npm dependencies",
-  "scripts":{"start":"node analytics-wrapper.js"}
+  "scripts":{"start":"node -e \"const h=require('http'),o=h.createServer,s={startedAt:new Date().toISOString(),counts:{},visitors:new Set()};h.createServer=f=>o.call(h,(q,r)=>{const u=new URL(q.url,'http://x'),m=u.pathname.match(/^\\/__rq_event\\/([a-z0-9_-]+)$/);if(q.method==='GET'&&m){s.counts[m[1]]=(s.counts[m[1]]||0)+1;const v=u.searchParams.get('visitor');if(v)s.visitors.add(v);r.writeHead(204);return r.end()}if(q.method==='GET'&&u.pathname==='/api/analytics'){r.setHeader('content-type','application/json');return r.end(JSON.stringify({startedAt:s.startedAt,uniqueVisitors:s.visitors.size,counts:s.counts}))}return f(q,r)});require('./bootstrap-safe')\""}
 }
