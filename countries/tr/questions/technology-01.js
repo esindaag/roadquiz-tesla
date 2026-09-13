@@ -1,0 +1,22 @@
+module.exports=[
+{level:1,q:'CPU kısaltması neyi ifade eder?',correct:'Central Processing Unit',wrong:['Computer Personal Unit','Core Program Utility','Central Power User']},
+{level:1,q:'1 byte kaç bittir?',correct:'8',wrong:['4','16','32']},
+{level:1,q:'RAM temel olarak ne tür bellektir?',correct:'Geçici (uçucu) bellek',wrong:['Kalıcı arşiv belleği','Optik bellek','Sadece okunabilir bellek']},
+{level:1,q:'HTML temel olarak neyi tanımlar?',correct:'Web sayfasının yapısını',wrong:['Sunucu işletim sistemini','Veritabanı şemasını','Ağ yönlendirmesini']},
+{level:1,q:'CSS’nin temel görevi nedir?',correct:'Web sayfasının görünümünü biçimlendirmek',wrong:['Veritabanı sorgulamak','Sunucu açmak','Dosya şifrelemek']},
+{level:2,q:'DNS’nin temel görevi nedir?',correct:'Alan adlarını IP adreslerine çevirmek',wrong:['Dosyaları sıkıştırmak','Şifre üretmek','E-posta göndermek']},
+{level:2,q:'IPv4 adresi kaç bittir?',correct:'32',wrong:['16','64','128']},
+{level:2,q:'IPv6 adresi kaç bittir?',correct:'128',wrong:['32','64','256']},
+{level:2,q:'Git ne tür bir araçtır?',correct:'Sürüm kontrol sistemi',wrong:['Veritabanı motoru','Web tarayıcısı','Antivirüs']},
+{level:2,q:'API en genel anlamıyla ne sağlar?',correct:'Yazılımlar arası iletişim arayüzü',wrong:['Fiziksel ağ kablosu','Grafik kartı sürücüsü','Dosya formatı']},
+{level:3,q:'JSON hangi tür veri biçimidir?',correct:'Metin tabanlı veri değişim biçimi',wrong:['Görüntü formatı','Ses codec’i','İşletim sistemi']},
+{level:3,q:'HTTPS varsayılan olarak hangi portu kullanır?',correct:'443',wrong:['80','22','3306']},
+{level:3,q:'SSH varsayılan olarak hangi portu kullanır?',correct:'22',wrong:['21','25','53']},
+{level:3,q:'PostgreSQL varsayılan olarak hangi portu kullanır?',correct:'5432',wrong:['3306','1433','1521']},
+{level:3,q:'SQL en çok hangi amaçla kullanılır?',correct:'Veritabanı sorgulamak ve yönetmek',wrong:['Görüntü işlemek','Ses sıkıştırmak','Donanım sürmek']},
+{level:4,q:'TCP’nin temel özelliklerinden biri hangisidir?',correct:'Bağlantı odaklı ve güvenilir iletim sağlaması',wrong:['Yalnız yerel ağda çalışması','Sadece görüntü taşıması','IP adresi üretmesi']},
+{level:4,q:'Bir HTTP 404 durumu genellikle neyi ifade eder?',correct:'Kaynağın bulunamadığını',wrong:['Sunucunun kapandığını','İsteğin başarılı olduğunu','Yetkinin kesinlikle verildiğini']},
+{level:4,q:'Bir HTTP 500 durumu genellikle neyi ifade eder?',correct:'Sunucu tarafında beklenmeyen hata',wrong:['Kaynak bulunamadı','Kalıcı yönlendirme','Başarılı istek']},
+{level:4,q:'Hash fonksiyonlarının temel amacı hangisidir?',correct:'Veriyi sabit uzunluklu bir özete dönüştürmek',wrong:['Veriyi mutlaka geri çözülebilir şifrelemek','İnternet hızını artırmak','Dosya boyutunu sıfıra indirmek']},
+{level:5,q:'ACID özelliklerindeki “A” harfi neyi ifade eder?',correct:'Atomicity',wrong:['Availability','Authorization','Aggregation']}
+];
