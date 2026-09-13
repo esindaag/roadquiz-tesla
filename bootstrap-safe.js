@@ -1,8 +1,6 @@
 const fs=require('fs'),path=require('path'),Module=require('module');
 let code=fs.readFileSync(path.join(__dirname,'bootstrap.js'),'utf8');
 
-// Make the generated server country-aware. TR is the first real country pack;
-// future packs can plug into the same picker contract without changing room flow.
 const engineHead="const engine=`const questionBank=buildBank();";
 const engineHeadNext="const engine=`const {DEFAULT_COUNTRY,getCountryPack}=require('./countries/registry');\nconst questionBank=buildBank();";
 if(!code.includes(engineHead))throw new Error('Country engine patch target not found');
@@ -33,13 +31,11 @@ const fallbackTo="if(!candidates.length){const all=[...questionBank.flat(),...Ob
 if(!code.includes(fallbackFrom))throw new Error('Question fallback patch target not found');
 code=code.replace(fallbackFrom,fallbackTo);
 
-// Count actual unique question texts, not generated entries.
 const familyFrom="function questionFamily(q)";
 const familyTo="const uniqueQuestionCount=new Set([...questionBank.flat(),...Object.values(extraByCategory).flat()].map(q=>q.q)).size;\nfunction questionFamily(q)";
 if(!code.includes(familyFrom))throw new Error('Unique question count patch target not found');
 code=code.replace(familyFrom,familyTo);
 
-// Patch server.js after bootstrap.js has inserted the question engine.
 const injectFrom="code=code.replace(target,engine);";
 const injectTo=`code=code.replace(target,engine);
 const roomCreateFrom="rooms.set(code,{code,hostId,players:new Map(),phase:'lobby',questionIndex:0,answers:new Map(),durationMs:15000,revealMs:4000,questionStartedAt:null,revealStartedAt:null,questions:pickGameQuestions()});";
@@ -50,8 +46,7 @@ const replayFrom="room.phase='question';room.questionIndex=0;room.answers.clear(
 const replayTo="if(room.phase!=='lobby'&&room.phase!=='finished')return json(res,409,{error:'already_started'});for(const p of room.players.values())p.score=0;if(!room.usedQuestionTexts)room.usedQuestionTexts=new Set();if(room.phase==='finished')room.questions=pickGameQuestions(room.usedQuestionTexts,room.country||DEFAULT_COUNTRY);for(const q of room.questions)room.usedQuestionTexts.add(q.q);room.gameCount=(room.gameCount||0)+1;room.phase='question';room.questionIndex=0;room.answers.clear();room.questionStartedAt=Date.now();room.revealStartedAt=null;return json(res,200,{ok:true})";
 if(!code.includes(replayFrom))throw new Error('Replay reset patch target not found');
 code=code.replace(replayFrom,replayTo);
-code=code.replace("bankSize:questionBank.reduce((a,p)=>a+p.length,0)","bankSize:uniqueQuestionCount,country:room.country||DEFAULT_COUNTRY,gameCount:room.gameCount||0");
-code=code.replace("server.listen(PORT,'0.0.0.0',()=>console.log(\`RoadQuiz running on \\${PORT}; question bank: \\${questionBank.reduce((a,p)=>a+p.length,0)}\`));","server.listen(PORT,'0.0.0.0',()=>console.log('RoadQuiz running on '+PORT+'; unique questions: '+uniqueQuestionCount+'; generated entries: '+questionBank.reduce((a,p)=>a+p.length,0)+'; country: '+DEFAULT_COUNTRY));");`;
+code=code.replace("bankSize:questionBank.reduce((a,p)=>a+p.length,0)","bankSize:uniqueQuestionCount,country:room.country||DEFAULT_COUNTRY,gameCount:room.gameCount||0");`;
 if(!code.includes(injectFrom))throw new Error('Bootstrap injection target not found');
 code=code.replace(injectFrom,injectTo);
 
