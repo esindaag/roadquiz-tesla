@@ -41,7 +41,7 @@ if(!code.includes(historyFrom))throw new Error('Question history patch target no
 code=code.replace(historyFrom,historyTo);
 
 const diversityFrom="if(cat==='Coğrafya'){const nonRepeatType=candidates.filter(q=>!(questionFamily(q)==='capital'&&usedFamilies.has('capital')));if(nonRepeatType.length)candidates=nonRepeatType}";
-const diversityTo="if(cat==='Coğrafya'){const nonRepeatType=candidates.filter(q=>!(questionFamily(q)==='capital'&&usedFamilies.has('capital')));if(nonRepeatType.length)candidates=nonRepeatType}const familyFresh=candidates.filter(q=>!usedFamilies.has(questionFamily(q)));if(familyFresh.length)candidates=familyFresh";
+const diversityTo="if(cat==='Coğrafya'){const nonRepeatType=candidates.filter(q=>!(questionFamily(q)==='capital'&&usedFamilies.has('capital')));if(nonRepeatType.length)candidates=nonRepeatType}const familyFresh=candidates.filter(q=>!usedFamilies.has(questionFamily(q)));if(familyFresh.length)candidates=familyFresh;";
 if(!code.includes(diversityFrom))throw new Error('Question diversity patch target not found');
 code=code.replace(diversityFrom,diversityTo);
 
