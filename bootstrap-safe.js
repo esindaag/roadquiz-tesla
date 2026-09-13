@@ -10,6 +10,11 @@ const historyTo="if(recentQuestionTexts.length>1000)recentQuestionTexts.splice(0
 if(!code.includes(historyFrom))throw new Error('Question history patch target not found');
 code=code.replace(historyFrom,historyTo);
 
+const fallbackFrom="if(!candidates.length)candidates=pool.filter(q=>!usedText.has(q.q));if(!candidates.length)candidates=pool;";
+const fallbackTo="if(!candidates.length)candidates=questionBank.flat().filter(q=>q.cat===cat&&!usedText.has(q.q)&&!recent.has(q.q));if(!candidates.length)candidates=questionBank.flat().filter(q=>!usedText.has(q.q)&&!recent.has(q.q));if(!candidates.length)candidates=pool.filter(q=>!usedText.has(q.q));";
+if(!code.includes(fallbackFrom))throw new Error('Question fallback patch target not found');
+code=code.replace(fallbackFrom,fallbackTo);
+
 const replayFrom="room.phase='question';room.questionIndex=0;room.answers.clear();room.questionStartedAt=Date.now();room.revealStartedAt=null;return json(res,200,{ok:true})";
 const replayTo="for(const p of room.players.values())p.score=0;room.questions=pickGameQuestions();room.phase='question';room.questionIndex=0;room.answers.clear();room.questionStartedAt=Date.now();room.revealStartedAt=null;return json(res,200,{ok:true})";
 if(!code.includes(replayFrom))throw new Error('Replay reset patch target not found');
