@@ -1,0 +1,22 @@
+module.exports=[
+{level:1,q:'Futbolda bir takım sahaya kaç oyuncuyla çıkar?',correct:'11',wrong:['9','10','12']},
+{level:1,q:'Basketbolda üç sayı çizgisinin gerisinden atılan başarılı şut kaç sayı kazandırır?',correct:'3',wrong:['1','2','4']},
+{level:1,q:'Teniste 40-40 eşitliğine ne ad verilir?',correct:'Deuce',wrong:['Love','Ace','Set point']},
+{level:1,q:'Voleybolda bir takım sahada kaç oyuncuyla oynar?',correct:'6',wrong:['5','7','8']},
+{level:1,q:'Maratonun resmi mesafesi yaklaşık kaç kilometredir?',correct:'42,195',wrong:['21,097','35','50']},
+{level:2,q:'FIFA Dünya Kupası hangi spor dalında düzenlenir?',correct:'Futbol',wrong:['Basketbol','Tenis','Voleybol']},
+{level:2,q:'Wimbledon hangi spor dalının turnuvasıdır?',correct:'Tenis',wrong:['Golf','Kriket','Badminton']},
+{level:2,q:'Formula 1’de damalı bayrak neyi gösterir?',correct:'Yarışın tamamlandığını',wrong:['Pit yolunun açıldığını','Yağmur başladığını','Güvenlik aracının çıktığını']},
+{level:2,q:'Basketbolda serbest atış çizgisinden başarılı bir atış kaç sayı değerindedir?',correct:'1',wrong:['2','3','4']},
+{level:2,q:'Futbolda kaleci ceza sahası içinde topa hangi uzvuyla dokunabilir?',correct:'Eliyle',wrong:['Sadece ayağıyla','Sadece başıyla','Hiçbiriyle']},
+{level:3,q:'Modern Olimpiyat Oyunları ilk kez hangi yıl düzenlendi?',correct:'1896',wrong:['1888','1900','1912']},
+{level:3,q:'Tour de France hangi spor dalıyla ilişkilidir?',correct:'Bisiklet',wrong:['Atletizm','Motor sporları','Kayak']},
+{level:3,q:'Grand Slam tenis turnuvalarından biri hangisidir?',correct:'Roland Garros',wrong:['Monte Carlo Masters','Laver Cup','Davis Cup']},
+{level:3,q:'Futbolda bir penaltı vuruşu kale çizgisinden yaklaşık kaç metre uzaktan kullanılır?',correct:'11 metre',wrong:['9 metre','12 metre','16 metre']},
+{level:3,q:'NBA’de normal bir maç kaç çeyrekten oluşur?',correct:'4',wrong:['2','3','5']},
+{level:4,q:'Decathlon kaç farklı atletizm branşından oluşur?',correct:'10',wrong:['8','9','12']},
+{level:4,q:'Olimpik yüzme havuzunun uzunluğu kaç metredir?',correct:'50',wrong:['25','40','100']},
+{level:4,q:'Futbolda “hat-trick” ne anlama gelir?',correct:'Bir oyuncunun maçta üç gol atması',wrong:['Bir takımın üç maç kazanması','Üç asist yapılması','Üç penaltının kaçırılması']},
+{level:4,q:'Teniste bir oyuncunun servis karşılanmadan doğrudan sayı olması ne olarak adlandırılır?',correct:'Ace',wrong:['Volley','Break','Deuce']},
+{level:5,q:'Heptatlon kadınlar açık hava atletizminde kaç branştan oluşur?',correct:'7',wrong:['6','8','10']}
+];
