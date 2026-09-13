@@ -1,0 +1,22 @@
+module.exports=[
+{level:1,q:'Türkiye’nin başkenti hangisidir?',correct:'Ankara',wrong:['İstanbul','İzmir','Bursa']},
+{level:1,q:'Fransa’nın başkenti hangisidir?',correct:'Paris',wrong:['Lyon','Brüksel','Marsilya']},
+{level:1,q:'Japonya’nın başkenti hangisidir?',correct:'Tokyo',wrong:['Osaka','Kyoto','Seul']},
+{level:1,q:'İtalya’nın başkenti hangisidir?',correct:'Roma',wrong:['Milano','Napoli','Venedik']},
+{level:1,q:'Türkiye hangi iki kıta üzerinde topraklara sahiptir?',correct:'Asya ve Avrupa',wrong:['Asya ve Afrika','Avrupa ve Afrika','Avrupa ve Amerika']},
+{level:2,q:'Türkiye’nin en büyük gölü hangisidir?',correct:'Van Gölü',wrong:['Tuz Gölü','Beyşehir Gölü','Eğirdir Gölü']},
+{level:2,q:'Türkiye’nin en uzun nehri hangisidir?',correct:'Kızılırmak',wrong:['Fırat','Sakarya','Yeşilırmak']},
+{level:2,q:'Kapadokya ağırlıklı olarak hangi ilimizle özdeşleşmiştir?',correct:'Nevşehir',wrong:['Konya','Kayseri','Sivas']},
+{level:2,q:'Pamukkale travertenleri hangi ilimizdedir?',correct:'Denizli',wrong:['Muğla','Aydın','Antalya']},
+{level:2,q:'Ağrı Dağı hangi ilimizin sınırları içindedir?',correct:'Ağrı',wrong:['Van','Erzurum','Kars']},
+{level:3,q:'Avustralya’nın başkenti hangisidir?',correct:'Canberra',wrong:['Sydney','Melbourne','Perth']},
+{level:3,q:'Kanada’nın başkenti hangisidir?',correct:'Ottawa',wrong:['Toronto','Vancouver','Montreal']},
+{level:3,q:'Brezilya’nın başkenti hangisidir?',correct:'Brasília',wrong:['Rio de Janeiro','São Paulo','Salvador']},
+{level:3,q:'İsviçre’nin federal şehri ve fiilî başkenti hangisidir?',correct:'Bern',wrong:['Zürih','Cenevre','Lozan']},
+{level:3,q:'Yeni Zelanda’nın başkenti hangisidir?',correct:'Wellington',wrong:['Auckland','Christchurch','Hamilton']},
+{level:4,q:'İstanbul Boğazı hangi iki denizi birbirine bağlar?',correct:'Karadeniz ve Marmara Denizi',wrong:['Ege ve Akdeniz','Marmara ve Ege','Karadeniz ve Ege']},
+{level:4,q:'Çanakkale Boğazı hangi iki denizi birbirine bağlar?',correct:'Marmara Denizi ve Ege Denizi',wrong:['Karadeniz ve Marmara Denizi','Ege ve Akdeniz','Karadeniz ve Ege']},
+{level:4,q:'Türkiye’nin yüzölçümü bakımından en büyük ili hangisidir?',correct:'Konya',wrong:['Ankara','Sivas','Erzurum']},
+{level:4,q:'Türkiye’nin en batıdaki ili hangisidir?',correct:'Çanakkale',wrong:['Edirne','İzmir','Balıkesir']},
+{level:5,q:'Fırat Nehri Türkiye’den çıktıktan sonra ağırlıklı olarak hangi iki ülkeden geçer?',correct:'Suriye ve Irak',wrong:['İran ve Irak','Gürcistan ve Azerbaycan','Suriye ve Ürdün']}
+];
