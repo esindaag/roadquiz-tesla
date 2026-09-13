@@ -23,20 +23,17 @@ const recentTo="recent=new Set(excludedTexts||recentQuestionTexts);";
 if(!code.includes(recentFrom))throw new Error('Question exclusion patch target not found');
 code=code.replace(recentFrom,recentTo);
 
-const historyFrom="if(recentQuestionTexts.length>40)recentQuestionTexts.splice(0,recentQuestionTexts.length-40);";
+const historyFrom="recentQuestionTexts.push(...picked.map(q=>q.q));if(recentQuestionTexts.length>40)recentQuestionTexts.splice(0,recentQuestionTexts.length-40);";
 const historyTo="if(!excludedTexts){recentQuestionTexts.push(...picked.map(q=>q.q));if(recentQuestionTexts.length>5000)recentQuestionTexts.splice(0,recentQuestionTexts.length-5000)}";
 if(!code.includes(historyFrom))throw new Error('Question history patch target not found');
-// The original function already pushes once immediately before historyFrom.
-// Remove that push too so room-specific history is authoritative during a game series.
-code=code.replace("recentQuestionTexts.push(...picked.map(q=>q.q));"+historyFrom,historyTo);
+code=code.replace(historyFrom,historyTo);
 
 const fallbackFrom="if(!candidates.length)candidates=pool.filter(q=>!usedText.has(q.q));if(!candidates.length)candidates=pool;";
 const fallbackTo="if(!candidates.length){const all=[...questionBank.flat(),...Object.values(extraByCategory).flat()];candidates=all.filter(q=>!usedText.has(q.q)&&!recent.has(q.q))}if(!candidates.length)throw new Error('question_pool_exhausted');";
 if(!code.includes(fallbackFrom))throw new Error('Question fallback patch target not found');
 code=code.replace(fallbackFrom,fallbackTo);
 
-// Count actual unique question texts, not generated entries. This is the number that
-// matters for the cumulative same-room no-repeat guarantee.
+// Count actual unique question texts, not generated entries.
 const familyFrom="function questionFamily(q)";
 const familyTo="const uniqueQuestionCount=new Set([...questionBank.flat(),...Object.values(extraByCategory).flat()].map(q=>q.q)).size;\nfunction questionFamily(q)";
 if(!code.includes(familyFrom))throw new Error('Unique question count patch target not found');
@@ -54,7 +51,7 @@ const replayTo="if(room.phase!=='lobby'&&room.phase!=='finished')return json(res
 if(!code.includes(replayFrom))throw new Error('Replay reset patch target not found');
 code=code.replace(replayFrom,replayTo);
 code=code.replace("bankSize:questionBank.reduce((a,p)=>a+p.length,0)","bankSize:uniqueQuestionCount,country:room.country||DEFAULT_COUNTRY,gameCount:room.gameCount||0");
-code=code.replace("question bank: \\${questionBank.reduce((a,p)=>a+p.length,0)}","question bank unique: \\${uniqueQuestionCount}; generated entries: \\${questionBank.reduce((a,p)=>a+p.length,0)}; country: \\${DEFAULT_COUNTRY}");`;
+code=code.replace("server.listen(PORT,'0.0.0.0',()=>console.log(\`RoadQuiz running on \\${PORT}; question bank: \\${questionBank.reduce((a,p)=>a+p.length,0)}\`));","server.listen(PORT,'0.0.0.0',()=>console.log('RoadQuiz running on '+PORT+'; unique questions: '+uniqueQuestionCount+'; generated entries: '+questionBank.reduce((a,p)=>a+p.length,0)+'; country: '+DEFAULT_COUNTRY));");`;
 if(!code.includes(injectFrom))throw new Error('Bootstrap injection target not found');
 code=code.replace(injectFrom,injectTo);
 
