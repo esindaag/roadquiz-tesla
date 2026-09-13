@@ -5,6 +5,11 @@ const to="let pool=questionBank[level].filter(q=>q.cat===cat);if(!pool.length)po
 if(!code.includes(from))throw new Error('Safe question picker patch target not found');
 code=code.replace(from,to);
 
+const historyFrom="if(recentQuestionTexts.length>40)recentQuestionTexts.splice(0,recentQuestionTexts.length-40);";
+const historyTo="if(recentQuestionTexts.length>1000)recentQuestionTexts.splice(0,recentQuestionTexts.length-1000);";
+if(!code.includes(historyFrom))throw new Error('Question history patch target not found');
+code=code.replace(historyFrom,historyTo);
+
 const replayFrom="room.phase='question';room.questionIndex=0;room.answers.clear();room.questionStartedAt=Date.now();room.revealStartedAt=null;return json(res,200,{ok:true})";
 const replayTo="for(const p of room.players.values())p.score=0;room.questions=pickGameQuestions();room.phase='question';room.questionIndex=0;room.answers.clear();room.questionStartedAt=Date.now();room.revealStartedAt=null;return json(res,200,{ok:true})";
 if(!code.includes(replayFrom))throw new Error('Replay reset patch target not found');
