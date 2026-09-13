@@ -32,7 +32,7 @@ for(const [cat,prefix,files] of defs){
 
 const audit=auditQuestions(questions);
 if(audit.total!==1000)throw new Error(`TR question count must be 1000, got ${audit.total}`);
-if(audit.uniqueTexts!==1000)throw new Error(`TR questions must have 1000 unique texts, got ${audit.uniqueTexts}`);
+if(audit.uniqueTexts!==1000)throw new Error(`TR questions must have 1000 unique texts, got ${audit.uniqueTexts}; duplicates=${JSON.stringify(audit.duplicateTexts)}`);
 if(audit.duplicateIds.length)throw new Error(`TR duplicate question ids: ${JSON.stringify(audit.duplicateIds.slice(0,5))}`);
 if(audit.invalid.length)throw new Error(`TR invalid questions: ${JSON.stringify(audit.invalid.slice(0,5))}`);
 for(const [cat,target] of Object.entries(CATEGORY_TARGETS)){
