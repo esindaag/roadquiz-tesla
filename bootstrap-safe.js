@@ -2,9 +2,18 @@ const fs=require('fs'),path=require('path'),Module=require('module');
 let code=fs.readFileSync(path.join(__dirname,'bootstrap.js'),'utf8');
 
 const engineHead="const engine=`const questionBank=buildBank();";
-const engineHeadNext="const engine=`const {DEFAULT_COUNTRY,getCountryPack}=require('./countries/registry');\nconst questionBank=buildBank();";
+const engineHeadNext="const engine=`const {DEFAULT_COUNTRY,getCountryPack}=require('./countries/registry');\nconst {byLevel:buildTRBank,audit:trQuestionAudit}=require('./countries/tr/questions');\nconst questionBank=buildTRBank();";
 if(!code.includes(engineHead))throw new Error('Country engine patch target not found');
 code=code.replace(engineHead,engineHeadNext);
+
+const categoryFrom="const a=['Coğrafya','Coğrafya','Coğrafya','Tarih','Tarih','Tarih','Bilim','Bilim','Bilim','Kültür & Sanat','Kültür & Sanat','Kültür & Sanat','Edebiyat','Edebiyat','Teknoloji','Teknoloji','Matematik','Matematik','Genel Kültür','Genel Kültür'];";
+const categoryTo="const a=['Coğrafya','Coğrafya','Coğrafya','Tarih','Tarih','Tarih','Bilim','Bilim','Bilim','Kültür & Sanat','Kültür & Sanat','Kültür & Sanat','Genel Kültür','Genel Kültür','Teknoloji','Teknoloji','Matematik','Matematik','Spor','Spor'];";
+if(!code.includes(categoryFrom))throw new Error('Balanced category patch target not found');
+code=code.replace(categoryFrom,categoryTo);
+
+const extrasFrom="if(extraByCategory[cat])pool=pool.concat(extraByCategory[cat]);if(cat==='Kültür & Sanat')pool=extraByCategory[cat].slice();";
+if(!code.includes(extrasFrom))throw new Error('Legacy extras patch target not found');
+code=code.replace(extrasFrom,'');
 
 const from="let pool=questionBank[level].filter(q=>q.cat===cat);";
 const to="let pool=questionBank[level].filter(q=>q.cat===cat);if(!pool.length)pool=questionBank.flat().filter(q=>q.cat===cat);";
@@ -27,12 +36,12 @@ if(!code.includes(historyFrom))throw new Error('Question history patch target no
 code=code.replace(historyFrom,historyTo);
 
 const fallbackFrom="if(!candidates.length)candidates=pool.filter(q=>!usedText.has(q.q));if(!candidates.length)candidates=pool;";
-const fallbackTo="if(!candidates.length){const all=[...questionBank.flat(),...Object.values(extraByCategory).flat()];candidates=all.filter(q=>!usedText.has(q.q)&&!recent.has(q.q))}if(!candidates.length)throw new Error('question_pool_exhausted');";
+const fallbackTo="if(!candidates.length)candidates=questionBank.flat().filter(q=>!usedText.has(q.q)&&!recent.has(q.q));if(!candidates.length)throw new Error('question_pool_exhausted');";
 if(!code.includes(fallbackFrom))throw new Error('Question fallback patch target not found');
 code=code.replace(fallbackFrom,fallbackTo);
 
 const familyFrom="function questionFamily(q)";
-const familyTo="const uniqueQuestionCount=new Set([...questionBank.flat(),...Object.values(extraByCategory).flat()].map(q=>q.q)).size;\nfunction questionFamily(q)";
+const familyTo="const uniqueQuestionCount=trQuestionAudit.uniqueTexts;\nfunction questionFamily(q)";
 if(!code.includes(familyFrom))throw new Error('Unique question count patch target not found');
 code=code.replace(familyFrom,familyTo);
 
