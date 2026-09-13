@@ -8,7 +8,7 @@
     const key=onceKey?`rq_evt_${onceKey}`:null;
     if(key&&sessionStorage.getItem(key))return;
     if(key)sessionStorage.setItem(key,'1');
-    fetch(`${PREFIX}${eventName}?visitor=${safe(visitor)}`,{method:'GET',cache:'no-store',keepalive:true}).catch(()=>{});
+    fetch(`${PREFIX}${eventName}/${safe(visitor)}`,{method:'GET',cache:'no-store',keepalive:true}).catch(()=>{});
   }
   window.rqTrack=track;
   track('site_visit','site_visit');
