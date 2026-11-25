@@ -1,28 +1,52 @@
-'use strict';
-const seed=require('./questions.seed.json');
-const labels={GEO:['Geography','Geografía','Geografie'],HIS:['History','Historia','Geschichte'],SCI:['Science','Ciencia','Wissenschaft'],CUL:['Arts & Culture','Arte y cultura','Kunst & Kultur'],GEN:['General Knowledge','Cultura general','Allgemeinwissen'],TEC:['Technology','Tecnología','Technologie'],SPO:['Sports','Deportes','Sport'],MAT:['Mathematics','Matemáticas','Mathematik']};
-const languages=['en','es','de'];
-function validate(rows){
- const ids=new Set(),texts=Object.fromEntries(languages.map(l=>[l,new Set()]));
- for(const r of rows){
-  if(ids.has(r.id)||!labels[r.category]||!Number.isInteger(r.level)||r.level<1||r.level>20||!Number.isInteger(r.answer)||r.answer<0||r.answer>3)throw Error('Invalid question: '+r.id);
-  ids.add(r.id);
-  for(const l of languages){
-   const t=r.translations[l];
-   if(!t||!t.q.trim()||t.options.length!==4||t.options.some(x=>!x.trim())||new Set(t.options.map(x=>x.trim().toLowerCase())).size!==4||texts[l].has(t.q.trim().toLowerCase()))throw Error('Invalid translation: '+r.id+' '+l);
-   texts[l].add(t.q.trim().toLowerCase());
+"use strict";
+
+const banks = {
+  en: require("./questions.en.json"),
+  es: require("./questions.es.json"),
+  de: require("./questions.de.json"),
+};
+const labels = {
+  en: { GEO: "Geography", HIS: "History", SCI: "Science", CUL: "Arts & Culture", GEN: "General Knowledge", TEC: "Technology", SPO: "Sports", MAT: "Mathematics" },
+  es: { GEO: "Geografía", HIS: "Historia", SCI: "Ciencia", CUL: "Arte y cultura", GEN: "Cultura general", TEC: "Tecnología", SPO: "Deportes", MAT: "Matemáticas" },
+  de: { GEO: "Geografie", HIS: "Geschichte", SCI: "Wissenschaft", CUL: "Kunst & Kultur", GEN: "Allgemeinwissen", TEC: "Technologie", SPO: "Sport", MAT: "Mathematik" },
+  tr: { GEO: "Coğrafya", HIS: "Tarih", SCI: "Bilim", CUL: "Kültür & Sanat", GEN: "Genel Kültür", TEC: "Teknoloji", SPO: "Spor", MAT: "Matematik" },
+};
+const targetCounts = { GEO: 150, HIS: 160, SCI: 150, CUL: 150, GEN: 140, TEC: 100, SPO: 70, MAT: 80 };
+
+function audit(language, rows) {
+  const ids = new Set();
+  const texts = new Set();
+  const categories = {};
+  const levels = {};
+  for (const row of rows) {
+    if (!row.id || ids.has(row.id)) throw new Error(`${language}: duplicate or missing id ${row.id}`);
+    ids.add(row.id);
+    const text = String(row.q || "").trim().toLocaleLowerCase(language);
+    if (!text || texts.has(text)) throw new Error(`${language}: duplicate or missing question ${row.id}`);
+    texts.add(text);
+    if (!targetCounts[row.category]) throw new Error(`${language}: invalid category ${row.id}`);
+    if (!Number.isInteger(row.level) || row.level < 1 || row.level > 20) throw new Error(`${language}: invalid level ${row.id}`);
+    if (!Array.isArray(row.options) || row.options.length !== 4 || new Set(row.options.map(option => String(option).trim().toLocaleLowerCase(language))).size !== 4) throw new Error(`${language}: invalid options ${row.id}`);
+    if (!Number.isInteger(row.answer) || row.answer < 0 || row.answer > 3) throw new Error(`${language}: invalid answer ${row.id}`);
+    categories[row.category] = (categories[row.category] || 0) + 1;
+    levels[row.level] = (levels[row.level] || 0) + 1;
   }
- }
+  if (rows.length !== 1000) throw new Error(`${language}: expected 1000 questions, got ${rows.length}`);
+  for (const [category, target] of Object.entries(targetCounts)) if (categories[category] !== target) throw new Error(`${language}: ${category} expected ${target}, got ${categories[category]}`);
+  return { total: rows.length, uniqueTexts: texts.size, categories, levels };
 }
-validate(seed);
-function byLevel(language){
- const li=languages.indexOf(language);if(li<0)throw Error('unsupported_language');
- const bank=Array.from({length:20},()=>[]);
- for(const r of seed){
-  const t=r.translations[language],order=[0,1,2,3];
-  for(let i=3;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}
-  bank[r.level-1].push({id:r.id,level:r.level,cat:labels[r.category][li],category:r.category,q:t.q,options:order.map(i=>t.options[i]),answer:order.indexOf(r.answer)});
- }
- return bank;
-}
-module.exports={languages,labels,byLevel,validate,count:seed.length};
+
+const audits = Object.fromEntries(Object.entries(banks).map(([language, rows]) => [language, audit(language, rows)]));
+
+module.exports = {
+  languages: Object.keys(banks),
+  questions(language) {
+    if (!banks[language]) throw new Error("unsupported_language");
+    return banks[language];
+  },
+  count(language) { return banks[language]?.length || 0; },
+  label(language, category, fallback) { return labels[language]?.[category] || fallback || category; },
+  labels,
+  audits,
+  targetCounts,
+};
