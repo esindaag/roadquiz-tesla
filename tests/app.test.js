@@ -4,6 +4,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const { spawn } = require("node:child_process");
 const path = require("node:path");
+const fs = require("node:fs");
 const globalBank = require("../countries/global");
 
 const port = 43000 + Math.floor(Math.random() * 1000);
@@ -60,6 +61,13 @@ test("each global language has 1,000 structurally valid unique questions", () =>
     assert.ok(questions.every(question => Number.isInteger(question.answer) && question.answer >= 0 && question.answer < 4));
     assert.ok(questions.every(question => question.level >= 1 && question.level <= 20));
   }
+});
+
+test("premium UI accepts Gumroad license keys instead of legacy six-character codes", () => {
+  const appSource = fs.readFileSync(path.join(__dirname, "..", "public", "app.js"), "utf8");
+  assert.match(appSource, /Gumroad license key/);
+  assert.match(appSource, /\^\[A-Z0-9-\]\{20,100\}\$/);
+  assert.doesNotMatch(appSource, /6-character code|Código de 6 caracteres|6-stelliger Code|6 karakterli kod/);
 });
 
 test("legacy Render flow stays Turkish while product proxy supports all four languages", async () => {
