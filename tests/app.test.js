@@ -63,6 +63,21 @@ test("each global language has 1,000 structurally valid unique questions", () =>
   }
 });
 
+test("question provenance and Spanish editorial overrides stay reproducible", () => {
+  for (const language of ["en", "de"]) {
+    const questions = globalBank.questions(language);
+    assert.ok(questions.every(question => question.source?.dataset === "open-quiz-bank"));
+    assert.ok(questions.every(question => !question.source.translation));
+    assert.equal(new Set(questions.map(question => question.source.id)).size, 1000);
+  }
+  const spanish = globalBank.questions("es");
+  assert.ok(spanish.every(question => question.source?.translation === "Helsinki-NLP/opus-mt-en-es"));
+  const bySource = new Map(spanish.map(question => [question.source.id, question]));
+  assert.equal(bySource.get("en-nature-cec4a81452bf").options[2], "Ave residente");
+  assert.match(bySource.get("en-technology-4a0d94047385").q, /^¿Qué significa/);
+  assert.match(bySource.get("en-history-402b1450d80d").q, /^¿Cuántos años reinó/);
+});
+
 test("premium UI accepts Gumroad license keys instead of legacy six-character codes", () => {
   const appSource = fs.readFileSync(path.join(__dirname, "..", "public", "app.js"), "utf8");
   assert.match(appSource, /Gumroad license key/);
