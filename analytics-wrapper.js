@@ -24,4 +24,4 @@ http.createServer=function(handler){
   });
 };
 
-require('./bootstrap-safe');
+require('./app-server');

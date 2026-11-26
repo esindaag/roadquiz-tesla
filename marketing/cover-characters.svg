@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#182132"/><stop offset="1" stop-color="#0a0d12"/></linearGradient>
+    <linearGradient id="dash" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#222a33"/><stop offset="1" stop-color="#0d1116"/></linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1a2129"/><stop offset="1" stop-color="#10151b"/></linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#313848"/><stop offset="1" stop-color="#12161d"/></linearGradient>
+    <clipPath id="windshield"><path d="M155 325 Q800 235 1445 325 L1325 660 Q800 590 275 660Z"/></clipPath>
+  </defs>
+  <rect width="1600" height="900" fill="#080b0f"/>
+
+  <!-- RoadQuiz navigation mark -->
+  <g transform="translate(72 54)" font-family="Inter, Arial, sans-serif">
+    <rect width="58" height="58" rx="15" fill="#f4f6f8"/>
+    <text x="29" y="40" text-anchor="middle" fill="#0d1115" font-size="23" font-weight="900" letter-spacing="-2">RQ</text>
+    <text x="78" y="24" fill="#f4f6f8" font-size="19" font-weight="900" letter-spacing="3.5">ROADQUIZ</text>
+    <text x="78" y="47" fill="#7f8a96" font-size="10" font-weight="800" letter-spacing="2.8">BY ED LAB</text>
+  </g>
+  <g transform="translate(800 112)" text-anchor="middle" font-family="Inter, Arial, sans-serif">
+    <text y="0" fill="#f6f7f9" font-size="68" font-weight="900" letter-spacing="-4">TURN YOUR TRIP</text>
+    <text y="69" fill="#9aa4af" font-size="68" font-weight="900" letter-spacing="-4">INTO A GAME SHOW.</text>
+  </g>
+
+  <!-- Stylised panoramic roof and windscreen -->
+  <path d="M50 300 Q800 205 1550 300" fill="none" stroke="#2d3540" stroke-width="20"/>
+  <path d="M155 325 Q800 235 1445 325 L1325 660 Q800 590 275 660Z" fill="url(#sky)" stroke="#353f4a" stroke-width="7"/>
+  <g clip-path="url(#windshield)">
+    <circle cx="1230" cy="352" r="88" fill="#e82127" opacity=".58"/>
+    <circle cx="1230" cy="352" r="126" fill="none" stroke="#e82127" stroke-opacity=".12" stroke-width="26"/>
+    <path d="M575 710 L750 440 L850 440 L1025 710Z" fill="url(#road)"/>
+    <path d="M797 675 L800 480" stroke="#f4f6f8" stroke-opacity=".7" stroke-width="7" stroke-dasharray="32 31"/>
+    <path d="M0 560 Q300 420 555 462" fill="none" stroke="#303a48" stroke-width="6"/>
+    <path d="M1600 555 Q1310 420 1045 462" fill="none" stroke="#303a48" stroke-width="6"/>
+    <g fill="#f4f6f8" opacity=".65"><circle cx="370" cy="390" r="3"/><circle cx="520" cy="345" r="4"/><circle cx="1015" cy="360" r="3"/><circle cx="1120" cy="425" r="4"/><circle cx="690" cy="390" r="3"/></g>
+  </g>
+
+  <!-- Minimal EV interior, deliberately graphic rather than photoreal -->
+  <path d="M0 640 Q800 555 1600 640 L1600 900 L0 900Z" fill="url(#dash)"/>
+  <path d="M0 662 Q800 580 1600 662" fill="none" stroke="#47515d" stroke-width="3"/>
+  <path d="M0 687 Q800 610 1600 687" fill="none" stroke="#e82127" stroke-opacity=".52" stroke-width="4"/>
+  <path d="M84 900 Q100 688 292 648 Q410 624 454 710 L486 900Z" fill="#12171d" stroke="#303842" stroke-width="5"/>
+  <path d="M1114 900 L1146 710 Q1190 624 1308 648 Q1500 688 1516 900Z" fill="#12171d" stroke="#303842" stroke-width="5"/>
+
+  <!-- Tesla-like central screen with real RoadQuiz UI -->
+  <g transform="translate(570 480)" font-family="Inter, Arial, sans-serif">
+    <rect width="460" height="292" rx="22" fill="url(#screen)" stroke="#4a5663" stroke-width="4"/>
+    <text x="28" y="34" fill="#7e8995" font-size="9" font-weight="900" letter-spacing="2">QUESTION 08 / 20</text>
+    <circle cx="416" cy="32" r="20" fill="#182028" stroke="#596571" stroke-width="4"/>
+    <text x="416" y="38" text-anchor="middle" fill="#fff" font-size="14" font-weight="900">15</text>
+    <text x="230" y="94" text-anchor="middle" fill="#f5f7f9" font-size="24" font-weight="850">The Red Planet?</text>
+    <g transform="translate(25 123)">
+      <rect width="195" height="56" rx="13" fill="#171e25" stroke="#5a97e8"/><text x="20" y="35" fill="#fff" font-size="15" font-weight="900">A</text><text x="55" y="35" fill="#fff" font-size="15" font-weight="800">Venus</text>
+      <g transform="translate(215 0)"><rect width="195" height="56" rx="13" fill="#171e25" stroke="#d5ad54"/><text x="20" y="35" fill="#fff" font-size="15" font-weight="900">B</text><text x="55" y="35" fill="#fff" font-size="15" font-weight="800">Jupiter</text></g>
+      <g transform="translate(0 70)"><rect width="195" height="56" rx="13" fill="#19251f" stroke="#5cdb9b" stroke-width="2"/><text x="20" y="35" fill="#fff" font-size="15" font-weight="900">C</text><text x="55" y="35" fill="#fff" font-size="15" font-weight="800">Mars</text><text x="170" y="35" fill="#5cdb9b" font-size="16" font-weight="900">✓</text></g>
+      <g transform="translate(215 70)"><rect width="195" height="56" rx="13" fill="#171e25" stroke="#e55b62"/><text x="20" y="35" fill="#fff" font-size="15" font-weight="900">D</text><text x="55" y="35" fill="#fff" font-size="15" font-weight="800">Mercury</text></g>
+    </g>
+  </g>
+
+  <!-- RoadQuiz cast as the passengers -->
+  <image href="../public/characters/drift.webp" x="40" y="540" width="330" height="330" preserveAspectRatio="xMidYMid meet"/>
+  <image href="../public/characters/volt.webp" x="300" y="615" width="270" height="270" preserveAspectRatio="xMidYMid meet"/>
+  <image href="../public/characters/nova.webp" x="1025" y="615" width="270" height="270" preserveAspectRatio="xMidYMid meet"/>
+  <image href="../public/characters/chill.webp" x="1240" y="535" width="340" height="340" preserveAspectRatio="xMidYMid meet"/>
+
+  <g transform="translate(1315 60)" font-family="Inter, Arial, sans-serif">
+    <rect width="215" height="46" rx="23" fill="#141a20" stroke="#333c46"/>
+    <circle cx="28" cy="23" r="5" fill="#57d68d"/>
+    <text x="47" y="28" fill="#dce1e5" font-size="11" font-weight="900" letter-spacing="1.6">PASSENGERS ONLY</text>
+  </g>
+</svg>

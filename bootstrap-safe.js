@@ -2,7 +2,7 @@ const fs=require('fs'),path=require('path'),Module=require('module');
 let code=fs.readFileSync(path.join(__dirname,'bootstrap.js'),'utf8');
 
 const engineHead="const engine=`const questionBank=buildBank();";
-const engineHeadNext="const engine=`const {DEFAULT_COUNTRY,getCountryPack}=require('./countries/registry');\nconst {byLevel:buildTRBank,audit:trQuestionAudit}=require('./countries/tr/questions');\nconst questionBank=buildTRBank();";
+const engineHeadNext="const engine=`const {DEFAULT_COUNTRY,getCountryPack}=require('./countries/registry');\nconst {byLevel:buildTRBank,audit:trQuestionAudit}=require('./countries/tr/questions');\nconst globalBank=require('./countries/global');\nconst questionBank=buildTRBank();";
 if(!code.includes(engineHead))throw new Error('Country engine patch target not found');
 code=code.replace(engineHead,engineHeadNext);
 
@@ -51,18 +51,18 @@ if(!code.includes(fallbackFrom))throw new Error('Question fallback patch target 
 code=code.replace(fallbackFrom,fallbackTo);
 
 const familyFrom="function questionFamily(q)";
-const familyTo="const uniqueQuestionCount=trQuestionAudit.uniqueTexts;\nfunction questionFamily(q)";
+const familyTo="const uniqueQuestionCount=trQuestionAudit.uniqueTexts;\nfunction pickLanguageQuestions(language,excluded){if(language==='tr')return pickGameQuestions(excluded,DEFAULT_COUNTRY);const bank=globalBank.byLevel(language).flat();const available=bank.filter(q=>!excluded.has(q.q));if(available.length<20)throw new Error('question_pool_exhausted');const selected=[];for(let level=1;level<=20;level++){let candidates=available.filter(q=>!selected.includes(q));const distance=Math.min(...candidates.map(q=>Math.abs(q.level-level)));candidates=candidates.filter(q=>Math.abs(q.level-level)===distance);selected.push(candidates[Math.floor(Math.random()*candidates.length)])}return selected}\nfunction questionFamily(q)";
 if(!code.includes(familyFrom))throw new Error('Unique question count patch target not found');
 code=code.replace(familyFrom,familyTo);
 
 const injectFrom="code=code.replace(target,engine);";
 const injectTo=`code=code.replace(target,engine);
 const roomCreateFrom="rooms.set(code,{code,hostId,players:new Map(),phase:'lobby',questionIndex:0,answers:new Map(),durationMs:15000,revealMs:4000,questionStartedAt:null,revealStartedAt:null,questions:pickGameQuestions()});";
-const roomCreateTo="rooms.set(code,{code,hostId,country:DEFAULT_COUNTRY,countryPack:getCountryPack(DEFAULT_COUNTRY),gameCount:0,usedQuestionTexts:new Set(),players:new Map(),phase:'lobby',questionIndex:0,answers:new Map(),durationMs:15000,revealMs:4000,questionStartedAt:null,revealStartedAt:null,questions:pickGameQuestions(new Set(),DEFAULT_COUNTRY)});";
+const roomCreateTo="const request=await body(req).catch(()=>null);if(!request)return json(res,400,{error:'bad_json'});const language=request.language||'tr';if(!['tr','en','es','de'].includes(language))return json(res,400,{error:'unsupported_language'});rooms.set(code,{code,hostId,language,country:DEFAULT_COUNTRY,countryPack:getCountryPack(DEFAULT_COUNTRY),gameCount:0,usedQuestionTexts:new Set(),players:new Map(),phase:'lobby',questionIndex:0,answers:new Map(),durationMs:15000,revealMs:4000,questionStartedAt:null,revealStartedAt:null,questions:pickLanguageQuestions(language,new Set())});";
 if(!code.includes(roomCreateFrom))throw new Error('Country room patch target not found');
 code=code.replace(roomCreateFrom,roomCreateTo);
 const replayFrom="room.phase='question';room.questionIndex=0;room.answers.clear();room.questionStartedAt=Date.now();room.revealStartedAt=null;return json(res,200,{ok:true})";
-const replayTo="if(room.phase!=='lobby'&&room.phase!=='finished')return json(res,409,{error:'already_started'});for(const p of room.players.values())p.score=0;if(!room.usedQuestionTexts)room.usedQuestionTexts=new Set();if(room.phase==='finished')room.questions=pickGameQuestions(room.usedQuestionTexts,room.country||DEFAULT_COUNTRY);for(const q of room.questions)room.usedQuestionTexts.add(q.q);room.gameCount=(room.gameCount||0)+1;room.phase='question';room.questionIndex=0;room.answers.clear();room.questionStartedAt=Date.now();room.revealStartedAt=null;return json(res,200,{ok:true})";
+const replayTo="if(room.phase!=='lobby'&&room.phase!=='finished')return json(res,409,{error:'already_started'});for(const p of room.players.values())p.score=0;if(!room.usedQuestionTexts)room.usedQuestionTexts=new Set();if(room.phase==='finished')room.questions=pickLanguageQuestions(room.language||'tr',room.usedQuestionTexts);for(const q of room.questions)room.usedQuestionTexts.add(q.q);room.gameCount=(room.gameCount||0)+1;room.phase='question';room.questionIndex=0;room.answers.clear();room.questionStartedAt=Date.now();room.revealStartedAt=null;return json(res,200,{ok:true})";
 if(!code.includes(replayFrom))throw new Error('Replay reset patch target not found');
 code=code.replace(replayFrom,replayTo);
 const lobbyMeFrom="if(room.phase==='lobby')return s;";
@@ -77,7 +77,7 @@ const answerFrom="if(req.method==='POST'&&action==='answer'){";
 const answerTo="if(req.method==='POST'&&action==='close'){if(!hostOk)return json(res,403,{error:'forbidden'});room.phase='closed';room.questionStartedAt=null;room.revealStartedAt=null;return json(res,200,{ok:true})}if(req.method==='POST'&&action==='answer'){";
 if(!code.includes(answerFrom))throw new Error('Close room patch target not found');
 code=code.replace(answerFrom,answerTo);
-code=code.replace("bankSize:questionBank.reduce((a,p)=>a+p.length,0)","bankSize:uniqueQuestionCount,country:room.country||DEFAULT_COUNTRY,gameCount:room.gameCount||0");`;
+code=code.replace("bankSize:questionBank.reduce((a,p)=>a+p.length,0)","bankSize:room.language&&room.language!=='tr'?globalBank.count:uniqueQuestionCount,language:room.language||'tr',country:room.country||DEFAULT_COUNTRY,gameCount:room.gameCount||0");`;
 if(!code.includes(injectFrom))throw new Error('Bootstrap injection target not found');
 code=code.replace(injectFrom,injectTo);
 
