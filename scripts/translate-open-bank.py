@@ -37,6 +37,13 @@ def main() -> None:
     seen = set()
     output = []
     disambiguated = 0
+    # The local OPUS model is deterministic, but a small number of prompts need
+    # editorial fixes for idiomatic Spanish or for titles that should use their
+    # established Spanish form. Keep the fixes keyed by the immutable source ID
+    # so rebuilding the bank remains reproducible.
+    editorial_overrides = json.loads(
+        Path(__file__).with_name("spanish-editorial-overrides.json").read_text()
+    )
     for index, row in enumerate(rows, start=1):
         question = translated[cursor]
         options = translated[cursor + 1:cursor + 5]
@@ -55,6 +62,9 @@ def main() -> None:
         options = [protected.get(source_value, translated_value) for source_value, translated_value in zip(row["options"], options)]
         if row["category"] == "TEC":
             options = ["Apple" if source_value == "Apple" else translated_value for source_value, translated_value in zip(row["options"], options)]
+        override = editorial_overrides.get(row["source"]["id"], {})
+        question = override.get("q", question)
+        options = override.get("options", options)
         key = question.casefold()
         if not question or key in seen:
             raise RuntimeError(f"Duplicate or empty question at {row['id']}: {question}")

@@ -1,0 +1,25 @@
+{
+  "en-arts-bb4e6beb95fe": {
+    "q": "En la novela «Guía del autoestopista galáctico», ¿a qué pregunta responde el número 42?",
+    "options": ["La pregunta sobre el fin del mundo", "La pregunta sobre la vida, el universo y todo lo demás", "El número de estrellas del universo", "El número de galaxias conocidas"]
+  },
+  "en-film-54f7325e2fb1": {
+    "q": "Ray Romano creó y protagonizó una comedia de CBS sobre un periodista deportivo que vive cerca de sus padres. ¿Cómo se llama la serie?",
+    "options": ["El rey de Queens", "Según Jim", "Sí, cariño", "Todo el mundo quiere a Raymond"]
+  },
+  "en-nature-cec4a81452bf": {
+    "q": "¿Cómo se llama un ave que permanece en la misma zona durante todo el año, en vez de migrar?",
+    "options": ["Ave de caza", "Ave reproductora", "Ave residente", "Ave cantora"]
+  },
+  "en-technology-4a0d94047385": {
+    "q": "¿Qué significa «ROM» en la abreviatura CD-ROM?",
+    "options": ["Memoria de acceso aleatorio", "Memoria de solo lectura", "Medio de solo lectura", "Memoria óptica extraíble"]
+  },
+  "en-history-402b1450d80d": {
+    "q": "¿Cuántos años reinó Luis XIV, el «Rey Sol», que ostenta el reinado más largo de la historia de Francia?",
+    "options": ["72 años", "45 años", "85 años", "60 años"]
+  },
+  "en-geography-bcab382e1e27": {
+    "options": ["San José", "Asunción", "Ciudad de Guatemala", "Kingston"]
+  }
+}
